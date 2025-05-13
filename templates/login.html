@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <!-- Enlace a Tailwind CSS desde CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Fondo con imagen de terraza -->
+    <div class="relative bg-cover bg-center h-screen" style="background-image: url('https://images.unsplash.com/photo-1740030325913-75f698b7bfb9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+        <div class="absolute inset-0 bg-black opacity-50"></div> <!-- Filtro oscuro para resaltar el formulario -->
+
+        <div class="min-h-screen flex items-center justify-center relative z-10">
+            <div class="w-full max-w-lg bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-center text-3xl font-semibold text-gray-800 mb-6">Iniciar sesión</h2>
+
+                <!-- Mostrar mensaje de error si existe -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div class="bg-red-500 text-white text-center p-2 rounded mb-4">
+                            {% for category, message in messages %}
+                                <strong>{{ message }}</strong>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+
+                <form action="/login" method="POST">
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 font-medium">Correo</label>
+                        <input type="email" name="email" id="email" required class="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="password" class="block text-gray-700 font-medium">Contraseña</label>
+                        <input type="password" name="password" id="password" required class="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+
+                    <button type="submit" class="w-full bg-indigo-500 text-white p-3 rounded-md font-semibold hover:bg-indigo-600 transition duration-300">Entrar</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
